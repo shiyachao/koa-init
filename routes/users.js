@@ -7,7 +7,7 @@ import {
 
 const router = require("koa-router")();
 
-router.prefix("/api/user");
+router.prefix("/user");
 
 router.get("/", getUser);
 router.post("/", addUser);
