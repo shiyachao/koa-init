@@ -52,11 +52,9 @@ app.use(async (ctx, next) => {
 
 // routes
 routes.forEach((route) => {
-  // route.prefix("/api");
+  route.prefix("/api");
   app.use(route.routes(), route.allowedMethods());
 });
-// app.use(index.routes(), index.allowedMethods());
-// app.use(users.routes(), users.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {
