@@ -1,5 +1,5 @@
-export const ResponseDto = {
-  code: 200,
-  msg: "",
-  data: null,
-};
+export class ResponseDto {
+  code = 200;
+  msg = "";
+  data = null;
+}
