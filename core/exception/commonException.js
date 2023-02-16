@@ -8,6 +8,7 @@ const Business = { msg: "业务异常", code: 10000, httpCode: 200 };
 const BadRequest = { msg: "Bad Request", code: 400, httpCode: 400 };
 const Unauthorized = { msg: "Unauthorized", code: 401, httpCode: 401 };
 const Forbidden = { msg: "Forbidden", code: 403, httpCode: 403 };
+const NotFound = { msg: "Not Found", code: 404, httpCode: 404 };
 const Unknow = { msg: "Unknow Error", code: -1, httpCode: 500 };
 /**
  * 常用异常类型
@@ -18,8 +19,12 @@ export const ExceptionType = {
   BadRequest,
   Unauthorized,
   Forbidden,
+  NotFound,
   Unknow,
 };
+export function getExceptionByCode(code) {
+  return Object.values(ExceptionType).find((ex) => ex.httpCode === code);
+}
 /**
  * 基础异常
  */
@@ -75,6 +80,30 @@ export class ForbiddenException extends CommonException {
     msg = Forbidden.msg,
     code = Forbidden.code,
     httpCode = Forbidden.httpCode
+  ) {
+    super(msg, code, httpCode);
+  }
+}
+/**
+ * 404
+ */
+export class NotFoundException extends CommonException {
+  constructor(
+    msg = NotFound.msg,
+    code = NotFound.code,
+    httpCode = NotFound.httpCode
+  ) {
+    super(msg, code, httpCode);
+  }
+}
+/**
+ * unknow
+ */
+export class UnknowException extends CommonException {
+  constructor(
+    msg = Unknow.msg,
+    code = Unknow.code,
+    httpCode = Unknow.httpCode
   ) {
     super(msg, code, httpCode);
   }
